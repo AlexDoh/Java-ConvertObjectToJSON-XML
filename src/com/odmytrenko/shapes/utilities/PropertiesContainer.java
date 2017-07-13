@@ -5,18 +5,18 @@ import java.util.Map;
 
 public class PropertiesContainer {
 
-    private static Map<String, Character> commonElements = new HashMap<>();
+    private static Map<String, Character> commonCharacters = new HashMap<>();
     private static Map<String, String> propertiesForXML = new HashMap<>();
     private static Map<String, String> propertiesForJSON = new HashMap<>();
 
     static {
-        commonElements.put("opened square bracket", '{');
-        commonElements.put("closed square bracket", '}');
-        commonElements.put("tab", '\t');
-        commonElements.put("new line", '\n');
-        commonElements.put("colon", ':');
-        commonElements.put("space", ' ');
-        commonElements.put("comma", ',');
+        commonCharacters.put("opened square bracket", '{');
+        commonCharacters.put("closed square bracket", '}');
+        commonCharacters.put("tab", '\t');
+        commonCharacters.put("new line", '\n');
+        commonCharacters.put("colon", ':');
+        commonCharacters.put("space", ' ');
+        commonCharacters.put("comma", ',');
 
         propertiesForJSON.put("class", "class");
         propertiesForJSON.put("properties", "properties");
@@ -29,31 +29,31 @@ public class PropertiesContainer {
     }
 
     public static char getOpenedSquareBracket() {
-        return commonElements.get("opened square bracket");
+        return commonCharacters.get("opened square bracket");
     }
 
     public static char getClosedSquareBracket() {
-        return commonElements.get("closed square bracket");
+        return commonCharacters.get("closed square bracket");
     }
 
     public static char getTab() {
-        return commonElements.get("tab");
+        return commonCharacters.get("tab");
     }
 
     public static char getNewLine() {
-        return commonElements.get("new line");
+        return commonCharacters.get("new line");
     }
 
     public static char getColon() {
-        return commonElements.get("colon");
+        return commonCharacters.get("colon");
     }
 
     public static char getSpace() {
-        return commonElements.get("space");
+        return commonCharacters.get("space");
     }
 
     public static char getComma() {
-        return commonElements.get("comma");
+        return commonCharacters.get("comma");
     }
 
     public static String getTagClassJSON() {
