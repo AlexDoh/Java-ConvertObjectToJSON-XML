@@ -26,7 +26,6 @@ public class ShapeToXML {
         }
         shapeString.append(PropertiesContainer.getTab()).append(PropertiesContainer.getTagPropertiesClosedXML());
         shapeString.append(PropertiesContainer.getNewLine()).append(PropertiesContainer.getTagShapeClosedXML());
-        System.out.println(shapeString);
 
         return shapeString.toString();
     }

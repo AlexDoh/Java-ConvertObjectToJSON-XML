@@ -15,6 +15,7 @@ public class Group extends Shape {
     }
 
     public boolean addShapeToGroup(Shape shape) {
+        shape.setAddedToGroup();
         return listOfShapes.add(shape);
     }
 
