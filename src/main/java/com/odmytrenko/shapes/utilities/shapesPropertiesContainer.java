@@ -3,13 +3,13 @@ package com.odmytrenko.shapes.utilities;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PropertiesContainer {
+public class shapesPropertiesContainer {
 
-    private static Map<String, Character> commonCharacters = new HashMap<>();
-    private static Map<String, String> propertiesForXML = new HashMap<>();
-    private static Map<String, String> propertiesForJSON = new HashMap<>();
+    private Map<String, Character> commonCharacters = new HashMap<>();
+    private Map<String, String> propertiesForXML = new HashMap<>();
+    private Map<String, String> propertiesForJSON = new HashMap<>();
 
-    static {
+    shapesPropertiesContainer() {
         commonCharacters.put("opened square bracket", '{');
         commonCharacters.put("closed square bracket", '}');
         commonCharacters.put("tab", '\t');
@@ -28,99 +28,99 @@ public class PropertiesContainer {
         propertiesForXML.put("head", "<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
     }
 
-    public static char getOpenedSquareBracket() {
+    public char getOpenedSquareBracket() {
         return commonCharacters.get("opened square bracket");
     }
 
-    public static char getClosedSquareBracket() {
+    public char getClosedSquareBracket() {
         return commonCharacters.get("closed square bracket");
     }
 
-    public static char getTab() {
+    public char getTab() {
         return commonCharacters.get("tab");
     }
 
-    public static char getNewLine() {
+    public char getNewLine() {
         return commonCharacters.get("new line");
     }
 
-    public static char getColon() {
+    public char getColon() {
         return commonCharacters.get("colon");
     }
 
-    public static char getSpace() {
+    public char getSpace() {
         return commonCharacters.get("space");
     }
 
-    public static char getComma() {
+    public char getComma() {
         return commonCharacters.get("comma");
     }
 
-    public static String getTagClassJSON() {
+    public String getTagClassJSON() {
         return propertiesForJSON.get("class");
     }
 
-    public static String getTagPropertiesJSON() {
+    public String getTagPropertiesJSON() {
         return propertiesForJSON.get("properties");
     }
 
-    public static String getTagClassOpenedXML() {
+    public String getTagClassOpenedXML() {
         return propertiesForXML.get("class");
     }
 
-    public static String getTagClassClosedXML() {
+    public String getTagClassClosedXML() {
         return propertiesForXML.get("class").charAt(0) + "/" + propertiesForXML.get("class").substring(1);
     }
 
-    public static String getTagPropertiesOpenedXML() {
+    public String getTagPropertiesOpenedXML() {
         return propertiesForXML.get("properties");
     }
 
-    public static String getTagPropertiesClosedXML() {
+    public String getTagPropertiesClosedXML() {
         return propertiesForXML.get("properties").charAt(0) + "/" + propertiesForXML.get("properties").substring(1);
     }
 
-    public static String getTagPropertyOpenedXML() {
+    public String getTagPropertyOpenedXML() {
         return propertiesForXML.get("property");
     }
 
-    public static String getTagPropertyClosedXML() {
+    public String getTagPropertyClosedXML() {
         return propertiesForXML.get("property").charAt(0) + "/" + propertiesForXML.get("property").substring(1);
     }
 
-    public static String getTagShapeOpenedXML() {
+    public String getTagShapeOpenedXML() {
         return propertiesForXML.get("shape");
     }
 
-    public static String getTagShapeClosedXML() {
+    public String getTagShapeClosedXML() {
         return propertiesForXML.get("shape").charAt(0) + "/" + propertiesForXML.get("shape").substring(1);
     }
 
-    public static String putValueBetweenTagClassXML(String value) {
+    public String putValueBetweenTagClassXML(String value) {
         return propertiesForXML.get("class") + value + propertiesForXML.get("class").charAt(0) + "/" +
                 propertiesForXML.get("class").substring(1);
     }
 
-    public static String putValueBetweenTagPropertiesXML(String value) {
+    public String putValueBetweenTagPropertiesXML(String value) {
         return propertiesForXML.get("properties") + value + propertiesForXML.get("properties").charAt(0) + "/" +
                 propertiesForXML.get("properties").substring(1);
     }
 
-    public static String putValueBetweenTagPropertyXML(String value) {
+    public String putValueBetweenTagPropertyXML(String value) {
         return propertiesForXML.get("property") + value + propertiesForXML.get("property").charAt(0) + "/" +
                 propertiesForXML.get("property").substring(1);
     }
 
-    public static String putValueBetweenTagShapeXML(String value) {
+    public String putValueBetweenTagShapeXML(String value) {
         return propertiesForXML.get("shape") + value + propertiesForXML.get("shape").charAt(0) + "/" +
                 propertiesForXML.get("shape").substring(1);
     }
 
-    public static String getHeaderTagXML() {
+    public String getHeaderTagXML() {
         return propertiesForXML.get("head");
     }
 
-    public static String getRoundedTagByNameAndValue(String tag, Object value) {
+    public String getRoundedTagByNameAndValue(String tag, Object value) {
         return '<' + tag + '>' + value + "</" + tag + '>';
     }
 }

@@ -1,8 +1,10 @@
 package com.odmytrenko.shapes.utilities;
 
-public class PrintShapeString {
+import com.odmytrenko.shapes.Shape;
 
-    public static void printShapeString(String shape) {
+public class PrintShapeString implements PrintString {
+
+    public void printString(String shape) {
         System.out.println(shape);
     }
 }

@@ -4,28 +4,35 @@ import com.odmytrenko.shapes.Shape;
 
 import java.lang.reflect.Field;
 
-public class ShapeToXML {
+public class ShapeToXML implements ConverterToXML {
 
-    public static String shapeToXML(Shape shape) throws IllegalAccessException {
+    private shapesPropertiesContainer shapesPropertiesContainer = new shapesPropertiesContainer();
+    private Shape shapeForConvert;
+
+    public ShapeToXML(Shape shape) {
+        shapeForConvert = shape;
+    }
+
+    public String toXML() throws IllegalAccessException {
         StringBuilder shapeString = new StringBuilder();
-        shapeString.append(PropertiesContainer.getHeaderTagXML()).append(PropertiesContainer.getNewLine());
-        shapeString.append(PropertiesContainer.getTagShapeOpenedXML()).append(PropertiesContainer.getNewLine());
-        shapeString.append(PropertiesContainer.getTab());
-        shapeString.append(PropertiesContainer.putValueBetweenTagClassXML(shape.getClass().getSimpleName()));
-        shapeString.append(PropertiesContainer.getNewLine()).append(PropertiesContainer.getTab());
-        shapeString.append(PropertiesContainer.getTagPropertiesOpenedXML()).append(PropertiesContainer.getNewLine());
-        for (Field field : shape.getClass().getDeclaredFields()) {
+        shapeString.append(shapesPropertiesContainer.getHeaderTagXML()).append(shapesPropertiesContainer.getNewLine());
+        shapeString.append(shapesPropertiesContainer.getTagShapeOpenedXML()).append(shapesPropertiesContainer.getNewLine());
+        shapeString.append(shapesPropertiesContainer.getTab());
+        shapeString.append(shapesPropertiesContainer.putValueBetweenTagClassXML(shapeForConvert.getClass().getSimpleName()));
+        shapeString.append(shapesPropertiesContainer.getNewLine()).append(shapesPropertiesContainer.getTab());
+        shapeString.append(shapesPropertiesContainer.getTagPropertiesOpenedXML()).append(shapesPropertiesContainer.getNewLine());
+        for (Field field : shapeForConvert.getClass().getDeclaredFields()) {
             field.setAccessible(true);
-            shapeString.append(PropertiesContainer.getTab()).append(PropertiesContainer.getTab());
-            shapeString.append(PropertiesContainer.getTagPropertyOpenedXML()).append(PropertiesContainer.getNewLine());
-            shapeString.append(PropertiesContainer.getTab()).append(PropertiesContainer.getTab());
-            shapeString.append(PropertiesContainer.getRoundedTagByNameAndValue(field.getName().toLowerCase(), field.get(shape)));
-            shapeString.append(PropertiesContainer.getNewLine());
-            shapeString.append(PropertiesContainer.getTab()).append(PropertiesContainer.getTab());
-            shapeString.append(PropertiesContainer.getTagPropertyClosedXML()).append(PropertiesContainer.getNewLine());
+            shapeString.append(shapesPropertiesContainer.getTab()).append(shapesPropertiesContainer.getTab());
+            shapeString.append(shapesPropertiesContainer.getTagPropertyOpenedXML()).append(shapesPropertiesContainer.getNewLine());
+            shapeString.append(shapesPropertiesContainer.getTab()).append(shapesPropertiesContainer.getTab());
+            shapeString.append(shapesPropertiesContainer.getRoundedTagByNameAndValue(field.getName().toLowerCase(), field.get(shapeForConvert)));
+            shapeString.append(shapesPropertiesContainer.getNewLine());
+            shapeString.append(shapesPropertiesContainer.getTab()).append(shapesPropertiesContainer.getTab());
+            shapeString.append(shapesPropertiesContainer.getTagPropertyClosedXML()).append(shapesPropertiesContainer.getNewLine());
         }
-        shapeString.append(PropertiesContainer.getTab()).append(PropertiesContainer.getTagPropertiesClosedXML());
-        shapeString.append(PropertiesContainer.getNewLine()).append(PropertiesContainer.getTagShapeClosedXML());
+        shapeString.append(shapesPropertiesContainer.getTab()).append(shapesPropertiesContainer.getTagPropertiesClosedXML());
+        shapeString.append(shapesPropertiesContainer.getNewLine()).append(shapesPropertiesContainer.getTagShapeClosedXML());
 
         return shapeString.toString();
     }

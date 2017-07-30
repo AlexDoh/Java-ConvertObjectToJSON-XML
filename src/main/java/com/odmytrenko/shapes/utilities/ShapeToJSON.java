@@ -4,30 +4,37 @@ import com.odmytrenko.shapes.Shape;
 
 import java.lang.reflect.Field;
 
-public class ShapeToJSON {
+public class ShapeToJSON implements ConverterToJSON {
 
-    public static String shapeToJSON(Shape shape) throws IllegalAccessException {
+    private shapesPropertiesContainer shapesPropertiesContainer = new shapesPropertiesContainer();
+    private Shape shapeForConvert;
+
+    public ShapeToJSON(Shape shape) {
+        shapeForConvert = shape;
+    }
+
+    public String toJSON() throws IllegalAccessException {
         StringBuilder shapeString = new StringBuilder();
-        shapeString.append(PropertiesContainer.getOpenedSquareBracket()).append(PropertiesContainer.getNewLine());
-        shapeString.append(PropertiesContainer.getTab()).append(PropertiesContainer.getTagClassJSON());
-        shapeString.append(PropertiesContainer.getColon()).append(PropertiesContainer.getSpace());
-        shapeString.append(shape.getClass().getSimpleName());
-        shapeString.append(PropertiesContainer.getComma()).append(PropertiesContainer.getNewLine());
-        shapeString.append(PropertiesContainer.getTab()).append(PropertiesContainer.getTagPropertiesJSON());
-        shapeString.append(PropertiesContainer.getColon()).append(PropertiesContainer.getSpace());
-        shapeString.append(PropertiesContainer.getOpenedSquareBracket()).append(PropertiesContainer.getNewLine());
-        for (Field field : shape.getClass().getDeclaredFields()) {
+        shapeString.append(shapesPropertiesContainer.getOpenedSquareBracket()).append(shapesPropertiesContainer.getNewLine());
+        shapeString.append(shapesPropertiesContainer.getTab()).append(shapesPropertiesContainer.getTagClassJSON());
+        shapeString.append(shapesPropertiesContainer.getColon()).append(shapesPropertiesContainer.getSpace());
+        shapeString.append(shapeForConvert.getClass().getSimpleName());
+        shapeString.append(shapesPropertiesContainer.getComma()).append(shapesPropertiesContainer.getNewLine());
+        shapeString.append(shapesPropertiesContainer.getTab()).append(shapesPropertiesContainer.getTagPropertiesJSON());
+        shapeString.append(shapesPropertiesContainer.getColon()).append(shapesPropertiesContainer.getSpace());
+        shapeString.append(shapesPropertiesContainer.getOpenedSquareBracket()).append(shapesPropertiesContainer.getNewLine());
+        for (Field field : shapeForConvert.getClass().getDeclaredFields()) {
             field.setAccessible(true);
-            shapeString.append(PropertiesContainer.getTab()).append(PropertiesContainer.getTab());
+            shapeString.append(shapesPropertiesContainer.getTab()).append(shapesPropertiesContainer.getTab());
             shapeString.append(field.getName().toLowerCase());
-            shapeString.append(PropertiesContainer.getColon()).append(PropertiesContainer.getSpace());
-            shapeString.append(field.get(shape));
-            shapeString.append(PropertiesContainer.getComma());
-            shapeString.append(PropertiesContainer.getNewLine());
+            shapeString.append(shapesPropertiesContainer.getColon()).append(shapesPropertiesContainer.getSpace());
+            shapeString.append(field.get(shapeForConvert));
+            shapeString.append(shapesPropertiesContainer.getComma());
+            shapeString.append(shapesPropertiesContainer.getNewLine());
         }
-        shapeString.append(PropertiesContainer.getTab()).append(PropertiesContainer.getClosedSquareBracket());
-        shapeString.append(PropertiesContainer.getNewLine());
-        shapeString.append(PropertiesContainer.getClosedSquareBracket()).append(PropertiesContainer.getNewLine());
+        shapeString.append(shapesPropertiesContainer.getTab()).append(shapesPropertiesContainer.getClosedSquareBracket());
+        shapeString.append(shapesPropertiesContainer.getNewLine());
+        shapeString.append(shapesPropertiesContainer.getClosedSquareBracket()).append(shapesPropertiesContainer.getNewLine());
 
         return shapeString.toString();
     }
